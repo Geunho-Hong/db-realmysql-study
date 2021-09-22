@@ -104,7 +104,7 @@ ex ) 주민등록번호 : 중복도가 낮음 -> 카디널리티가 높음
 
     ```jsx
     ALTER TABLE employees 
-    	ADD INDEX ix_gender_birthdate(gender , birth_date);
+        ADD INDEX ix_gender_birthdate(gender , birth_date);
 
     // 인덱스 사용하지 못하는 쿼리
     SELECT * FROM employees WHERE birth_date >= '1965-02-01';
@@ -112,11 +112,10 @@ ex ) 주민등록번호 : 중복도가 낮음 -> 카디널리티가 높음
     // 인덱스 사용가능한 쿼리
     SELECT * FROM employees WHERE gender = 'M' and birthdate >='1965-02-01';
     ```
-
-    **  type : range → 꼭 필요한 부분만 참조해서 읽었다
-                  : all →  테이블 풀 스캔
-
-            : ref → 테이블의 일부 대상으로 읽어들임
+##### Type 정리
+    - type range : 꼭 필요한 부분만 참조해서 읽음 (인덱스 잘 사용)
+    - all        : 테이블 풀 스캔 (비 효율적)
+    - ref        : 테이블의 일부 대상으로 읽어들임
 
 ### 인덱스 정렬 및 스캔 방향
 
