@@ -358,7 +358,7 @@ ORDER BY s.salary;
 > 
 > 결과를 모아서 MySQL 서버에서 일괄 가공하는 방식이다. limit 처럼 결가 건수를 제한하는 문장은 네트워크로 전송되는 레코드의 건수를 줄일 수는 있지만, MySQL 작업량이나 성능에는 그다지 변화가 없다.
 
-* JDBC 라이브러리는 MySQL 서버로부터 받는 레코드를 일단 내부 버퍼에 모두 담아둔다. (버퍼링 방식)   
+* JDBC 라이브러리는 MySQL 서버로부터 받는 레코드를 일단 내부 버퍼에 모두 담아둔다. (버퍼링 방식)  
 
 
 #### 9.2.3.4 정렬 관련 상태 변수
@@ -402,6 +402,11 @@ EXPlAIN
     GROUP BY emp_no;
     
 -- index는 emp_no, from_date로 생성
+
+id |   table  | type |   key   | Extra
+1  | salaries | range| PRIMARY | Using where; Using index for group-by
+
+-- index 를 group by 처리까지 사용함
 ```
 
 - MYSQL 서버가 쿼리를 실행한 순서
